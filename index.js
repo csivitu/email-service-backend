@@ -8,7 +8,7 @@ broker.createService({
   mixins: [ApiService],
   name: "greet",
   actions: {
-    send() {
+    sendEmail(params) {
       var API_KEY = process.env.API_KEY;
       var DOMAIN = process.env.DOMAIN;
         console.log(DOMAIN);
@@ -20,9 +20,9 @@ broker.createService({
 
       const data = {
         from: process.env.SENDER_EMAIL,
-        to: "test@gmail.com",
-        subject: "Hello",
-        text: "Testing some Mailgun awesomeness!",
+        to: params.to,
+        subject: params.subject,
+        text: params.text,
       };
 
       mailgun.messages().send(data, (error, body) => {
