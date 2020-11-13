@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "mailgun-js": "^0.22.0",
     "moleculer": "^0.14.11",
     "moleculer-web": "^0.9.1"
   }
