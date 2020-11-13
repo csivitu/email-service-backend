@@ -1,37 +1,39 @@
-let { ServiceBroker } = require("moleculer");
-let ApiService = require("moleculer-web");
 require('dotenv').config()
 
-let broker = new ServiceBroker({ logger: console });
+const { ServiceBroker } = require('moleculer')
+const ApiService = require('moleculer-web')
+
+const mailgun = require('mailgun-js')({
+  apiKey: process.env.API_KEY || 'secret-key-here',
+  domain: process.env.DOMAIN || 'www.gmail.com',
+  host: process.env.HOST || 'api.mailgun.net'
+})
+
+const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
+const auth = process.env.AUTH || 'secret-key-here'
+
+const broker = new ServiceBroker()
 
 broker.createService({
   mixins: [ApiService],
-  name: "greet",
+  settings: {
+    port: process.env.PORT || '3000'
+  },
+  name: 'email',
   actions: {
-    sendEmail(params) {
-      var API_KEY = process.env.API_KEY;
-      var DOMAIN = process.env.DOMAIN;
-        console.log(DOMAIN);
-      var mailgun = require("mailgun-js")({
-        apiKey: API_KEY,
-        domain: DOMAIN,
-        host: process.env.HOST,
-      });
-
+    send ({ params }) {
+      if (params.auth !== auth) {
+        return { error: 'auth key invalid' }
+      }
       const data = {
-        from: process.env.SENDER_EMAIL,
+        from: sender,
         to: params.to,
         subject: params.subject,
-        text: params.text,
-      };
+        text: params.text
+      }
+      return (mailgun.messages().send(data))
+    }
+  }
+})
 
-      mailgun.messages().send(data, (error, body) => {
-        console.log(error);
-        console.log(body);
-      });
-      return("Email sent");
-    },
-  },
-});
-
-broker.start();
+broker.start()
