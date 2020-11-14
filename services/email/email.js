@@ -1,4 +1,4 @@
-const broker = require('../../index')
+const broker = require('../init')
 
 const mailgun = require('mailgun-js')({
   apiKey: process.env.API_KEY || 'secret-key-here',
