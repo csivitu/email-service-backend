@@ -93,7 +93,7 @@ Create a `.env` file according to `sample.env` and run the following commands:
 
 > ```sh
 > screen -dm node index.js
-> curl 'http://localhost:3000/email/send?auth=secret-key-here&to=username@gmail.com&subject=test&text=test'
+> curl 'http://localhost:3000/email/send?auth=secret-key-here&to=username@gmail.com&subject=test&text=test&html=test'
 > ```
 
 _For more examples, please refer to the [Documentation](https://example.com)_

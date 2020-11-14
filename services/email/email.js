@@ -15,17 +15,25 @@ broker.createService({
   },
   name: 'email',
   actions: {
-    send ({ params }) {
-      if (params.auth !== auth) {
-        return { error: 'auth key invalid' }
+    async send (ctx) {
+      if (ctx.params.auth !== auth) {
+        ctx.meta.$statusCode = 401
+        return { error: 'Error: auth key invalid' }
       }
       const data = {
         from: sender,
-        to: params.to,
-        subject: params.subject,
-        text: params.text
+        to: ctx.params.to,
+        subject: ctx.params.subject,
+        text: ctx.params.text,
+        html: ctx.params.html
       }
-      return (mailgun.messages().send(data))
+      try {
+        const res = await mailgun.messages().send(data)
+        return (res)
+      } catch (err) {
+        ctx.meta.$statusCode = err.statusCode
+        return ({ error: err.toString() })
+      }
     }
   }
 })
