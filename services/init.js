@@ -1,6 +1,5 @@
 const { ServiceBroker } = require('moleculer')
 const broker = new ServiceBroker()
-
 module.exports = broker
 
 broker.start()
@@ -12,7 +11,7 @@ broker.createService({
   settings: {
     port: process.env.PORT || '3000',
     cors: {
-      origin: '*'
+      origin: process.env.ALLOWED_ORIGINS
     }
   }
 })

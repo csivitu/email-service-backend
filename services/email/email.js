@@ -5,9 +5,11 @@ const mailgun = require('mailgun-js')({
   domain: process.env.DOMAIN || 'www.gmail.com',
   host: process.env.HOST || 'api.mailgun.net'
 })
-
 const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 const auth = process.env.AUTH || 'secret-key-here'
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENGRID_API_KEY)
+var res = ''
 
 broker.createService({
   settings: {
@@ -25,14 +27,19 @@ broker.createService({
         to: ctx.params.to,
         subject: ctx.params.subject,
         text: ctx.params.text,
-        html: ctx.params.html
+        html: ctx.params.html,
+        attachment: ctx.params.attachment
       }
       try {
-        const res = await mailgun.messages().send(data)
-        return (res)
+        if (Math.random() % 2) {
+          res = await mailgun.messages().send(data)
+        } else {
+          res = await sgMail.send(data)
+        }
+        return res
       } catch (err) {
         ctx.meta.$statusCode = err.statusCode
-        return ({ error: err.toString() })
+        return { error: err.toString() }
       }
     }
   }
