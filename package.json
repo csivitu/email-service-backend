@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.0",
     "dotenv": "^8.2.0",
     "mailgun-js": "^0.22.0",
     "moleculer": "^0.14.11",

@@ -9,7 +9,7 @@ const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 const auth = process.env.AUTH || 'secret-key-here'
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENGRID_API_KEY)
-var res = ''
+let res = ''
 
 broker.createService({
   settings: {
