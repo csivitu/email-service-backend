@@ -5,7 +5,7 @@ module.exports = broker
 broker.start()
 
 const ApiService = require('moleculer-web')
-const ALLOWED_ORIGINS = process.env
+const { ALLOWED_ORIGINS } = process.env
 
 broker.createService({
   mixins: [ApiService],

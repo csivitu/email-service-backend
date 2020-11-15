@@ -31,7 +31,7 @@ broker.createService({
         attachment: ctx.params.attachment
       }
       try {
-        if (Math.random() % 2) {
+        if (Math.floor(Math.random() * 2) % 2) {
           res = await mailgun.messages().send(data)
         } else {
           res = await sgMail.send(data)
