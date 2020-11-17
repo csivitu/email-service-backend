@@ -10,9 +10,6 @@ const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 const auth = process.env.AUTH || 'secret-key-here'
 
 broker.createService({
-  settings: {
-    port: process.env.PORT || '3000'
-  },
   name: 'email',
   actions: {
     async send (ctx) {

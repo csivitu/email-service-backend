@@ -2,7 +2,7 @@
   "name": "email-service-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "A collection of frequently needed microservices",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
