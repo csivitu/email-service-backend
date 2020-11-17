@@ -10,7 +10,7 @@ const ApiService = require('moleculer-web')
 broker.createService({
   mixins: [ApiService],
   settings: {
-    port: process.env.PORT || '3000',
+    port: process.env.PORT || '5001',
     cors: {
       origin: '*'
     }

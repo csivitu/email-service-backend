@@ -25,7 +25,8 @@ broker.createService({
         to: ctx.params.to,
         subject: ctx.params.subject,
         text: ctx.params.text,
-        html: ctx.params.html
+        html: ctx.params.html,
+        'recipient-variables': '{}'
       }
       try {
         const res = await mailgun.messages().send(data)
