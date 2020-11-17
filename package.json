@@ -1,17 +1,18 @@
 {
-  "name": "xapp",
+  "name": "email-service-backend",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "A collection of frequently needed microservices",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "deploy:prod": "node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.0",
     "dotenv": "^8.2.0",
     "mailgun-js": "^0.22.0",
     "moleculer": "^0.14.11",
