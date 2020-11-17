@@ -1,15 +1,14 @@
 const broker = require('../init')
 
 const mailgun = require('mailgun-js')({
-  apiKey: process.env.API_KEY || 'secret-key-here',
+  apiKey: process.env.MAILGUN_API_KEY || 'secret-key-here',
   domain: process.env.DOMAIN || 'www.gmail.com',
-  host: process.env.HOST || 'api.mailgun.net'
+  host: process.env.MAILGUN_HOST || 'api.mailgun.net'
 })
 const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 const auth = process.env.AUTH || 'secret-key-here'
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENGRID_API_KEY)
-let res = ''
 
 broker.createService({
   settings: {
@@ -30,6 +29,7 @@ broker.createService({
         html: ctx.params.html,
         'recipient-variables': '{}'
       }
+      let res = ''
       try {
         if (Math.floor(Math.random() * 2) % 2) {
           res = await mailgun.messages().send(data)
