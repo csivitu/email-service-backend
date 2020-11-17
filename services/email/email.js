@@ -21,20 +21,27 @@ broker.createService({
         ctx.meta.$statusCode = 401
         return { error: 'Error: auth key invalid' }
       }
-      const data = {
-        from: sender,
-        to: ctx.params.to,
-        subject: ctx.params.subject,
-        text: ctx.params.text,
-        html: ctx.params.html,
-        'recipient-variables': '{}'
-      }
       let res = ''
       try {
         if (Math.floor(Math.random() * 2) % 2) {
+          const data = {
+            from: sender,
+            to: ctx.params.to,
+            subject: ctx.params.subject,
+            text: ctx.params.text,
+            html: ctx.params.html,
+            'recipient-variables': '{}'
+          }
           res = await mailgun.messages().send(data)
         } else {
-          res = await sgMail.send(data)
+          const data = {
+            from: sender,
+            to: ctx.params.to.split(', '),
+            subject: ctx.params.subject,
+            text: ctx.params.text,
+            html: ctx.params.html
+          }
+          res = await sgMail.sendMultiple(data)
         }
         return res
       } catch (err) {
