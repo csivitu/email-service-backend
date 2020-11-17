@@ -5,9 +5,8 @@ const mailgun = require('mailgun-js')({
 })
 
 const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
-let res = ''
 
-exports.mailgun = async (ctx) => {
+exports.mailgun = (ctx) => {
   try {
     const data = {
       from: sender,
@@ -17,8 +16,8 @@ exports.mailgun = async (ctx) => {
       html: ctx.params.html,
       'recipient-variables': '{}'
     }
-    res = await mailgun.messages().send(data)
+    return mailgun.messages().send(data)
   } catch (err) {
-    res.send(err)
+    return err
   }
 }

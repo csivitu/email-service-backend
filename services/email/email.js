@@ -6,7 +6,7 @@ const senGrid = require('./methods/sengrid')
 broker.createService({
   name: 'email',
   actions: {
-    async send (ctx) {
+    send (ctx) {
       let response = ''
       if (ctx.params.auth !== auth) {
         ctx.meta.$statusCode = 401
@@ -15,9 +15,9 @@ broker.createService({
 
       try {
         if (Math.floor(Math.random() * 2) % 2) {
-          response = await senGrid.sengrid(ctx)
+          response = senGrid.sengrid(ctx)
         } else {
-          response = await mailGun.mailgun(ctx)
+          response = mailGun.mailgun(ctx)
         }
         return response
       } catch (err) {

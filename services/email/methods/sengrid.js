@@ -2,8 +2,7 @@ const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENGRID_API_KEY)
 const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 
-let res = ''
-exports.sengrid = async (ctx) => {
+exports.sengrid = (ctx) => {
   try {
     const data = {
       from: sender,
@@ -12,8 +11,8 @@ exports.sengrid = async (ctx) => {
       text: ctx.params.text,
       html: ctx.params.html
     }
-    res = await sgMail.sendMultiple(data)
+    return sgMail.sendMultiple(data)
   } catch (err) {
-    res.send(err)
+    return err
   }
 }
