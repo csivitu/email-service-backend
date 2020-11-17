@@ -1,15 +1,15 @@
 {
-  "name": "xapp",
+  "name": "email-service-backend",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "deploy:prod": "node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
