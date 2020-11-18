@@ -18,7 +18,7 @@ module.exports = {
 
       let response = ''
       try {
-        if (Math.floor(Math.random() * 2) % 2 && process.env.SENGRID_API_KEY) {
+        if (Math.random() < 0.5 && process.env.SENGRID_API_KEY) {
           response = senGrid.sengrid(ctx)
         } else {
           response = mailGun.mailgun(ctx)
