@@ -1,12 +1,10 @@
 {
   "name": "email-service-backend",
   "version": "1.0.0",
-  "private": true,
   "description": "A collection of frequently needed microservices",
-  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "deploy:prod": "node index.js",
+    "start": "moleculer-runner --env --hot services/email/email.js services/api/api.js",
+    "deploy:prod": "moleculer-runner --env services/email/email.js services/api/api.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -29,7 +27,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "husky": "^4.3.0",
-    "nodemon": "^2.0.6"
+    "husky": "^4.3.0"
   }
 }

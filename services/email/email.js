@@ -1,9 +1,8 @@
-const broker = require('../init')
 const auth = process.env.AUTH || 'secret-key-here'
 const mailGun = require('./methods/mailgun')
 const senGrid = require('./methods/sengrid')
 
-broker.createService({
+module.exports = {
   name: 'email',
   actions: {
     send (ctx) {
@@ -14,7 +13,7 @@ broker.createService({
 
       if (!process.env.MAILGUN_API_KEY && !process.env.SENGRID_API_KEY) {
         ctx.meta.$statusCode = 503
-        return { error: 'Error: no api key is available righ now, please try again later' }
+        return { error: 'Error: no api key is available right now, please try again later' }
       }
 
       let response = ''
@@ -31,4 +30,4 @@ broker.createService({
       }
     }
   }
-})
+}
