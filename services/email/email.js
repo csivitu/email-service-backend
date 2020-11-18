@@ -1,37 +1,33 @@
-const broker = require('../init')
-
-const mailgun = require('mailgun-js')({
-  apiKey: process.env.API_KEY || 'secret-key-here',
-  domain: process.env.DOMAIN || 'www.gmail.com',
-  host: process.env.HOST || 'api.mailgun.net'
-})
-
-const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 const auth = process.env.AUTH || 'secret-key-here'
+const mailGun = require('./methods/mailgun')
+const senGrid = require('./methods/sengrid')
 
-broker.createService({
+module.exports = {
   name: 'email',
   actions: {
-    async send (ctx) {
+    send (ctx) {
       if (ctx.params.auth !== auth) {
         ctx.meta.$statusCode = 401
-        return { error: 'Error: auth key invalid' }
+        return { error: 'Error: auth key is invalid' }
       }
-      const data = {
-        from: sender,
-        to: ctx.params.to,
-        subject: ctx.params.subject,
-        text: ctx.params.text,
-        html: ctx.params.html,
-        'recipient-variables': '{}'
+
+      if (!process.env.MAILGUN_API_KEY && !process.env.SENGRID_API_KEY) {
+        ctx.meta.$statusCode = 503
+        return { error: 'Error: no api key is available right now, please try again later' }
       }
+
+      let response = ''
       try {
-        const res = await mailgun.messages().send(data)
-        return (res)
+        if (Math.random() < 0.5 && process.env.SENGRID_API_KEY) {
+          response = senGrid.sengrid(ctx)
+        } else {
+          response = mailGun.mailgun(ctx)
+        }
+        return response
       } catch (err) {
         ctx.meta.$statusCode = err.statusCode
-        return ({ error: err.toString() })
+        return { error: err.toString() }
       }
     }
   }
-})
+}
