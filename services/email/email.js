@@ -1,9 +1,8 @@
-const broker = require('../init')
 const auth = process.env.AUTH || 'secret-key-here'
 const mailGun = require('./methods/mailgun')
 const senGrid = require('./methods/sengrid')
 
-broker.createService({
+module.exports = {
   name: 'email',
   actions: {
     send (ctx) {
@@ -31,4 +30,4 @@ broker.createService({
       }
     }
   }
-})
+}
