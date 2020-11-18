@@ -4,7 +4,7 @@
   "description": "A collection of frequently needed microservices",
   "scripts": {
     "start": "moleculer-runner --env --hot services/email/email.js services/api/api.js",
-    "deploy:prod": "moleculer-runner --env services/email/email.js ervices/api/api.js",
+    "deploy:prod": "moleculer-runner --env services/email/email.js services/api/api.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

@@ -13,7 +13,7 @@ module.exports = {
 
       if (!process.env.MAILGUN_API_KEY && !process.env.SENGRID_API_KEY) {
         ctx.meta.$statusCode = 503
-        return { error: 'Error: no api key is available righ now, please try again later' }
+        return { error: 'Error: no api key is available right now, please try again later' }
       }
 
       let response = ''
