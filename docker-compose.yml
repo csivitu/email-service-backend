@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   web:
+    restart: on-failure
     build: .
     ports:
       - "5001:5001"
