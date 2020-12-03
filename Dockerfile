@@ -2,8 +2,10 @@ FROM node:lts-alpine
 
 WORKDIR /root/app
 
-COPY . .
+COPY package.json package-lock.json ./
 
-RUN npm install --only=prod
+RUN npm ci --only=production
+
+COPY . .
 
 CMD ["npm", "run", "deploy:prod"]
