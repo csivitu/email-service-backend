@@ -7,14 +7,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo">
+  <a href="https://github.com/email-service-backend/repo">
     <img src="https://csivit.com/images/favicon.png" alt="Logo" width="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Email-Service</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+    A microservice using to send bulk emails.
     <br />
     <a href="https://github.com/csivitu/repo"><strong>Explore the docs »</strong></a>
     <br />
@@ -48,18 +48,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo`, `twitter_handle`, `email`
+**Email-Service** is a microservice built using [Molecular](https://moleculer.services/docs/0.14/index.html) to send bulk emails using [sendgrid](https://moleculer.services/docs/0.14/index.html) and/or [mailgun](https://www.mailgun.com/) API keys.
 
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [Node](https://nodejs.org/en/)
+* [Molecular](https://www.npmjs.com/package/moleculer)
+* [mailgun-js](https://www.npmjs.com/package/mailgun-js)
+* [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail)
 
 
 
@@ -68,45 +65,62 @@ Here's a blank template to get started:
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
-
 ### Installation
  
 1. Clone the repo
 ```sh
-git clone https://github.com/github_username/repo.git
+git clone https://github.com/email-service-backend/repo.git
 ```
 2. Install NPM packages
 ```sh
 npm install
 ```
 
+#### Using yarn
+
+```sh
+yarn install
+```
+
+**Note:**  If installing the packages with npm you get errors use yarn to install them.
+
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Create a `.env` file according to `sample.env` and run the following commands:
+To run this project locally, you can run the following command. 
 
-> ```sh
-> screen -dm node index.js
-> curl 'http://localhost:3000/email/send?auth=secret-key-here&to=username@gmail.com&subject=test&text=test&html=test'
-> ```
+#### Using npm
+```sh
+npm start
+```
+#### Using yarn
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```sh
+yarn start
+```
 
+## API Endpoints
 
+|Request Type| Route | Function |
+|:-----------:|:------:|:---------:|
+| POST | /email | Send email according to the body (see-below) of the request |
+
+```json
+{
+  "to": "user1@domain1.com, user2@domain2.com",
+  "from": "sender@domain.com",
+  "html": "<h1>Hello</h1>",
+  "text": "Hello",
+  "auth": "SecretKeyToAuthenticate"
+}
+```
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/email-service-backend/repo/issues) for a list of proposed features (and known issues).
 
 
 
