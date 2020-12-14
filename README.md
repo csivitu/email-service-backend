@@ -7,7 +7,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/email-service-backend/repo">
+  <a href="https://github.com/csivitu/email-service-backend">
     <img src="https://csivit.com/images/favicon.png" alt="Logo" width="80">
   </a>
 
@@ -16,14 +16,14 @@
   <p align="center">
     A microservice using to send bulk emails.
     <br />
-    <a href="https://github.com/csivitu/repo"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/csivitu/email-service-backend"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/csivitu/repo">View Demo</a>
+    <a href="https://github.com/csivitu/email-service-backend">View Demo</a>
     ·
-    <a href="https://github.com/csivitu/repo/issues">Report Bug</a>
+    <a href="https://github.com/csivitu/email-service-backend/issues">Report Bug</a>
     ·
-    <a href="https://github.com/csivitu/repo/issues">Request Feature</a>
+    <a href="https://github.com/csivitu/email-service-backend/issues">Request Feature</a>
   </p>
 </p>
 
@@ -48,6 +48,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+Frontend repo [here](https://github.com/csivitu/email-service-frontend).
+
 **Email-Service** is a microservice built using [Molecular](https://moleculer.services/docs/0.14/index.html) to send bulk emails using [sendgrid](https://moleculer.services/docs/0.14/index.html) and/or [mailgun](https://www.mailgun.com/) API keys.
 
 
@@ -69,7 +71,7 @@ To get a local copy up and running follow these simple steps.
  
 1. Clone the repo
 ```sh
-git clone https://github.com/email-service-backend/repo.git
+git clone https://github.com/csivitu/email-service-backend.git
 ```
 2. Install NPM packages
 ```sh
@@ -120,7 +122,7 @@ yarn start
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/email-service-backend/repo/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/csivitu/email-service-backend/issues) for a list of proposed features (and known issues).
 
 
 
@@ -150,7 +152,7 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 [csivitu-shield]: https://img.shields.io/badge/csivitu-csivitu-blue
 [csivitu-url]: https://csivit.com
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/csivitu/repo/issues
+[issues-url]: https://github.com/csivitu/email-service-backend/issues
 
 ## Contributors ✨
 
