@@ -7,17 +7,13 @@ const mailgun = require('mailgun-js')({
 const sender = process.env.SENDER_EMAIL || 'username username@gmail.com'
 
 exports.mailgun = (ctx) => {
-  try {
-    const data = {
-      from: sender,
-      to: ctx.params.to,
-      subject: ctx.params.subject,
-      text: ctx.params.text,
-      html: ctx.params.html,
-      'recipient-variables': '{}'
-    }
-    return mailgun.messages().send(data)
-  } catch (err) {
-    return err
+  const data = {
+    from: sender,
+    to: ctx.params.to,
+    subject: ctx.params.subject,
+    text: ctx.params.text,
+    html: ctx.params.html,
+    'recipient-variables': '{}'
   }
+  return mailgun.messages().send(data)
 }
