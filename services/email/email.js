@@ -2,7 +2,7 @@ const auth = process.env.AUTH || 'secret-key-here'
 const mailGun = require('./methods/mailgun')
 const senGrid = require('./methods/sengrid')
 
-const { SENGRID_API_KEY, MAILGUN_API_KEY } = process.env
+const { MAILGUN_API_KEY } = process.env
 
 module.exports = {
   name: 'email',
@@ -13,14 +13,12 @@ module.exports = {
         return { error: 'Error: auth key is invalid' }
       }
 
-      if (!process.env.MAILGUN_API_KEY && !process.env.SENGRID_API_KEY) {
+      if (!process.env.MAILGUN_API_KEY) {
         ctx.meta.$statusCode = 503
         return { error: 'Error: no api key is available right now, please try again later' }
       }
 
-      const fun = MAILGUN_API_KEY && SENGRID_API_KEY
-        ? Math.random() < 0.5 ? senGrid.sengrid : mailGun.mailgun
-        : MAILGUN_API_KEY ? mailGun.mailgun : senGrid.sengrid
+      const fun = mailGun.mailgun
 
       try {
         const response = await fun(ctx)
